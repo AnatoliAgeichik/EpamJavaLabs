@@ -1,0 +1,46 @@
+package by.epam.eventto.restService;
+
+
+import by.epam.eventto.entity.Address;
+import by.epam.eventto.service.AddressService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+public class AddressController {
+    @Autowired
+    AddressService addressService;
+
+    @DeleteMapping("/address/delete")
+    public ResponseEntity<Void> deleteAddress(@RequestParam Long id){
+        addressService.delete(id);
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/address{id}")
+    public ResponseEntity<Address> getAddress(@PathVariable Long id){
+        return ResponseEntity.ok(addressService.getEntity(id));
+    }
+
+    @GetMapping("/addresses")
+    public ResponseEntity<List<Address>> getAllAddresses(){
+        return ResponseEntity.ok(addressService.getData());
+    }
+
+    @PutMapping("/address/update")
+    public ResponseEntity<Void> updateAddress(@RequestParam Address address){
+        addressService.update(address);
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping ("/address/insert")
+    public ResponseEntity<Void> createAddress(@RequestParam Address address){
+        addressService.create(address);
+        return ResponseEntity.ok().build();
+    }
+
+
+}

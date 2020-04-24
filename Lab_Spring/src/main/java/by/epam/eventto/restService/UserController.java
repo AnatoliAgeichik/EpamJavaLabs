@@ -16,16 +16,40 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @DeleteMapping("/user")
-    public ResponseEntity<Void> deleteUser(@RequestParam User user){
-        userService.delete(user.getEmail());
+    @DeleteMapping("/user/delete")
+    public ResponseEntity<Void> deleteUser(@RequestParam String id){
+        userService.delete(id);
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/users")
-    public ResponseEntity<User> getUser(@RequestParam String id){
+    @GetMapping("/user{id}")
+    public ResponseEntity<User> getUser( @PathVariable String id){
         return ResponseEntity.ok(userService.getEntity(id));
     }
+
+    @GetMapping("/users")
+    public ResponseEntity<List<User>> getAllUser(){
+        return ResponseEntity.ok(userService.getData());
+    }
+
+
+    @PutMapping("/user/update")
+    public ResponseEntity<Void> updateUser( @ModelAttribute User user){
+        userService.update(user);
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("user/insert")
+    public ResponseEntity<Void> createUser(@ModelAttribute  User user){
+        userService.create(user);
+        return ResponseEntity.ok().build();
+    }
+
+
+
+
+
+
 
 
 }
