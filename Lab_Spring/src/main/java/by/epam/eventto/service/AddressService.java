@@ -43,7 +43,7 @@ public class AddressService extends Service<Address, Long> {
     public void create(Address entity) {
         try {
 
-            if (!(isEntityExist(entity))) {
+            if (!(isEntityExist(entity.getAddressId()))) {
                 addressDao.create(entity);
             } else {
                 throw  new ServiceException("such user already exist");
@@ -58,7 +58,7 @@ public class AddressService extends Service<Address, Long> {
     @Override
     public void update(Address entity) {
         try {
-            if ((isEntityExist(entity))) {
+            if ((isEntityExist(entity.getAddressId()))) {
                 addressDao.update(entity);
             } else {
                 throw  new ServiceException("such user does not exist");
@@ -71,10 +71,10 @@ public class AddressService extends Service<Address, Long> {
     }
 
     @Override
-    public void delete(Address entity) {
+    public void delete(Long key) {
         try {
-            if (isEntityExist(entity)) {
-                addressDao.delete(entity.getAddressId());
+            if (isEntityExist(key)) {
+                addressDao.delete(key);
             } else {
                 throw  new ServiceException("such user does not exist");
 

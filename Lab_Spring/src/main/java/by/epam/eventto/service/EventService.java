@@ -33,7 +33,7 @@ public class EventService extends Service<Event, Long> {
     public void create(Event event){
         try {
 
-            if (!(isEntityExist(event))) {
+            if (!(isEntityExist(event.getEventID()))) {
                 eventDao.create(event);
             } else {
                 throw  new ServiceException("such user already exist");
@@ -50,7 +50,7 @@ public class EventService extends Service<Event, Long> {
     public void update(Event event) {
         try {
 
-            if (!(isEntityExist(event))) {
+            if (!(isEntityExist(event.getEventID()))) {
                 eventDao.create(event);
             } else {
                 throw  new ServiceException("such user does not exist");
@@ -65,11 +65,11 @@ public class EventService extends Service<Event, Long> {
     }
 
     @Override
-    public void delete(Event event) {
+    public void delete(Long key) {
         try {
 
-            if (!(isEntityExist(event))) {
-                eventDao.delete(event.getEventID());
+            if (!(isEntityExist(key))) {
+                eventDao.delete(key);
             } else {
                 throw  new ServiceException("such user does not exist");
 

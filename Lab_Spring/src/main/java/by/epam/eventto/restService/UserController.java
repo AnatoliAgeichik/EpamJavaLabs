@@ -18,7 +18,7 @@ public class UserController {
 
     @DeleteMapping("/user")
     public ResponseEntity<Void> deleteUser(@RequestParam User user){
-        userService.delete(user);
+        userService.delete(user.getEmail());
         return ResponseEntity.ok().build();
     }
 

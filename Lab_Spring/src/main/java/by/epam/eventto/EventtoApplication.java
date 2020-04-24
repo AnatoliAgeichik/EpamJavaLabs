@@ -4,6 +4,7 @@ import by.epam.eventto.collection.Gender;
 import by.epam.eventto.dao.*;
 import by.epam.eventto.entity.*;
 import by.epam.eventto.entity.Event;
+import by.epam.eventto.service.UserService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,8 @@ public class EventtoApplication implements CommandLineRunner {
 	CommentDao commentDao;
 	@Autowired
 	MembersDao memDao;
+	@Autowired
+	UserService userService;
 
 
 	public static void main(String[] args) {
@@ -73,7 +76,10 @@ public class EventtoApplication implements CommandLineRunner {
 //		List<Event> events = eventDao.getAll();
 //		events.forEach(u -> log.info(u));
 
-		List<Members> comments = memDao.getAll();
-		comments.forEach(u -> log.info(u));
+//		List<User> users = userService.getData();
+//		users.forEach(u -> log.info(u));
+		User user = userService.getEntity("fff@gmail.com");
+		userService.delete("fff@gmail.com");
+		log.info(user.toString());
 	}
 }

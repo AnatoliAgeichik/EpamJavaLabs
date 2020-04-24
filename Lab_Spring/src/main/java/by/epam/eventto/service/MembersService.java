@@ -32,7 +32,7 @@ public class MembersService extends Service<Members, Long> {
     @Override
     public void create(Members entity) {
         try {
-            if (!(isEntityExist(entity))) {
+            if (!(isEntityExist(entity.getMemberId()))) {
                 membersDao.create(entity);
             } else {
                 throw  new ServiceException("such user already exist");
@@ -48,7 +48,7 @@ public class MembersService extends Service<Members, Long> {
     @Override
     public void update(Members entity) {
         try {
-            if ((isEntityExist(entity))) {
+            if ((isEntityExist(entity.getMemberId()))) {
                 membersDao.update(entity);
             } else {
                 throw  new ServiceException("such user does not exist");
@@ -61,11 +61,11 @@ public class MembersService extends Service<Members, Long> {
     }
 
     @Override
-    public void delete(Members entity) {
+    public void delete(Long key) {
         try {
 
-            if (isEntityExist(entity)) {
-                membersDao.delete(entity.getMemberId());
+            if (isEntityExist(key)) {
+                membersDao.delete(key);
             } else {
                 throw  new ServiceException("such user does not exist");
 

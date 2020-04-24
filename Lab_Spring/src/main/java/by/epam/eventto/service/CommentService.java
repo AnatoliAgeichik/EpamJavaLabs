@@ -36,7 +36,7 @@ public class CommentService extends Service<Comment, Long> {
     public void create(Comment entity) {
         try {
 
-            if (!(isEntityExist(entity))) {
+            if (!(isEntityExist(entity.getCommentId()))) {
                 commentDao.create(entity);
             } else {
                 throw  new ServiceException("such user already exist");
@@ -53,7 +53,7 @@ public class CommentService extends Service<Comment, Long> {
     public void update(Comment entity) {
         try {
 
-            if ((isEntityExist(entity))) {
+            if ((isEntityExist(entity.getCommentId()))) {
                 commentDao.update(entity);
             } else {
                 throw  new ServiceException("such user does not exist");
@@ -67,11 +67,11 @@ public class CommentService extends Service<Comment, Long> {
     }
 
     @Override
-    public void delete(Comment entity) {
+    public void delete(Long key) {
         try {
 
-            if (isEntityExist(entity)) {
-                commentDao.delete(entity.getCommentId());
+            if (isEntityExist(key)) {
+                commentDao.delete(key);
             } else {
                 throw  new ServiceException("such user does not exist");
 

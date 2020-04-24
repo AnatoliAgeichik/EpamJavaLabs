@@ -17,13 +17,23 @@ public abstract class Service<E, K> {
 
     //public abstract  void read();
 
-    public boolean isEntityExist(E entity) {
+//    public boolean isEntityExist(E entity) {
+//        List<E> arr = getData();
+//        for (E item : arr) {
+//            if (item.hashCode() == entity.hashCode()) {
+//                return true;
+//            }
+//
+//        }
+//        return false;
+//    }
+    public boolean isEntityExist(K key) {
         List<E> arr = getData();
+        E entity = getEntity(key);
         for (E item : arr) {
             if (item.hashCode() == entity.hashCode()) {
                 return true;
             }
-
         }
         return false;
     }
@@ -34,6 +44,6 @@ public abstract class Service<E, K> {
 
     public abstract void update(E entity);
 
-    public abstract void delete(E entity);
+    public abstract void delete(K key);
 
 }

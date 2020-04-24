@@ -32,7 +32,7 @@ public class UserService extends Service<User, String> {
 
     public void create(User user) {
         try {
-            if (!(isEntityExist(user))) {
+            if (!(isEntityExist(user.getEmail()))) {
                 userDao.create(user);
             } else {
                 throw new ServiceException("such user already exists");
@@ -47,7 +47,7 @@ public class UserService extends Service<User, String> {
     @Override
     public void update(User user) {
         try {
-            if ((isEntityExist(user))) {
+            if ((isEntityExist(user.getEmail()))) {
                 userDao.update(user);
             } else {
                 throw  new ServiceException("such user does not exist");
@@ -59,10 +59,10 @@ public class UserService extends Service<User, String> {
     }
 
     @Override
-    public void delete(User user) {
+    public void delete(String key) {
         try {
-            if (isEntityExist(user)) {
-                userDao.delete(user.getEmail());
+            if (isEntityExist(key)) {
+                userDao.delete(key);
             } else {
                 throw  new ServiceException("such user does not exist");
 
