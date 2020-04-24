@@ -46,7 +46,7 @@ public class EventtoApplication implements CommandLineRunner {
 		//userDao.delete("dddddd@gmail.com");
 		log.info( user1 + " read!");
 		//userDao.create(user);
-
+		//test
 		//List<User> users = userDao.getAll();
 		//users.forEach(u -> log.info(u));
 	}
