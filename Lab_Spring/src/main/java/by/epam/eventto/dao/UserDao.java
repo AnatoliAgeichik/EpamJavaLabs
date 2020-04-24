@@ -2,6 +2,7 @@ package by.epam.eventto.dao;
 
 import by.epam.eventto.entity.User;
 import by.epam.eventto.mapper.UserMapper;
+import org.apache.el.stream.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;

@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Logger;
 
 
 import by.epam.eventto.entity.User;
+import org.springframework.dao.DataAccessException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,15 +28,25 @@ public abstract class Service<E, K> {
 //        }
 //        return false;
 //    }
+//    public boolean isEntityExist(K key) {
+//        List<E> arr = getData();
+//        E entity = getEntity(key);
+//        for (E item : arr) {
+//            if (item.hashCode() == entity.hashCode()) {
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
+
     public boolean isEntityExist(K key) {
-        List<E> arr = getData();
-        E entity = getEntity(key);
-        for (E item : arr) {
-            if (item.hashCode() == entity.hashCode()) {
-                return true;
-            }
+        try{
+           E entity = getEntity(key);
+        }catch (DataAccessException e){
+            log.error(e.getMessage());
+            return false;
         }
-        return false;
+        return true;
     }
 
     public abstract E getEntity(K key);
