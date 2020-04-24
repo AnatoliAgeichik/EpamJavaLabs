@@ -1,0 +1,73 @@
+package by.epam.eventto.service;
+
+import by.epam.eventto.dao.MembersDao;
+import by.epam.eventto.entity.Members;
+import by.epam.eventto.exception.ServiceException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Component
+public class MembersService extends Service<Members> {
+
+    @Autowired
+    private MembersDao membersDao;
+
+   // public MembersService(){
+     //    membersDao = new MembersDao();
+    //}
+
+    @Override
+    public List<Members> getData() {
+        return membersDao.getAll();
+    }
+
+    @Override
+    public void create(Members entity) {
+        try {
+            if (!(isEntityExist(entity))) {
+                membersDao.create(entity);
+            } else {
+                throw  new ServiceException("such user already exist");
+
+            }
+        }
+        catch (ServiceException e){
+            log.error(e.getMessage());
+        }
+
+    }
+
+    @Override
+    public void update(Members entity) {
+        try {
+            if ((isEntityExist(entity))) {
+                membersDao.update(entity);
+            } else {
+                throw  new ServiceException("such user does not exist");
+
+            }
+        }
+        catch (ServiceException e){
+            log.error(e.getMessage());
+        }
+    }
+
+    @Override
+    public void delete(Members entity) {
+        try {
+
+            if (isEntityExist(entity)) {
+                membersDao.delete(entity.getMemberId());
+            } else {
+                throw  new ServiceException("such user does not exist");
+
+            }
+        }
+        catch (ServiceException e) {
+            log.error(e.getMessage());
+        }
+    }
+}
