@@ -11,7 +11,7 @@ import java.util.List;
 
 
 @Component
-public class UserService extends Service<User> {
+public class UserService extends Service<User, String> {
 
 
     @Autowired
@@ -23,6 +23,11 @@ public class UserService extends Service<User> {
 
     public List<User> getData() {
         return userDao.getAll();
+    }
+
+    @Override
+    public User getEntity(String key) {
+        return userDao.get(key);
     }
 
     public void create(User user) {

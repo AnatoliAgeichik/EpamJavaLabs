@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class AddressService extends Service<Address> {
+public class AddressService extends Service<Address, Long> {
 
     @Autowired
     private AddressDao addressDao;
@@ -26,10 +26,17 @@ public class AddressService extends Service<Address> {
 //        addressDao.getAll();
 //    }
 
+
+
     @Override
     public List<Address> getData() {
         return addressDao.getAll();
 
+    }
+
+    @Override
+    public Address getEntity(Long key) {
+        return  addressDao.get(key);
     }
 
     @Override

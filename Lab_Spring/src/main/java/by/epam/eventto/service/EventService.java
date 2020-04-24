@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class EventService extends Service<Event> {
+public class EventService extends Service<Event, Long> {
 
     @Autowired
     private EventDao eventDao;
@@ -24,6 +24,12 @@ public class EventService extends Service<Event> {
     public List<Event> getData(){
         return eventDao.getAll();
     }
+
+    @Override
+    public Event getEntity(Long key) {
+        return eventDao.get(key);
+    }
+
     public void create(Event event){
         try {
 

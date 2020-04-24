@@ -10,7 +10,7 @@ import by.epam.eventto.entity.User;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Service<E> {
+public abstract class Service<E, K> {
     static Logger log= LogManager.getLogger();
 
     public abstract List<E> getData();
@@ -27,6 +27,9 @@ public abstract class Service<E> {
         }
         return false;
     }
+
+    public abstract E getEntity(K key);
+
     public abstract void create(E entity);
 
     public abstract void update(E entity);

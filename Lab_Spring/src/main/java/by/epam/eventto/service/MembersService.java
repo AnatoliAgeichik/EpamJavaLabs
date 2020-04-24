@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class MembersService extends Service<Members> {
+public class MembersService extends Service<Members, Long> {
 
     @Autowired
     private MembersDao membersDao;
@@ -22,6 +22,11 @@ public class MembersService extends Service<Members> {
     @Override
     public List<Members> getData() {
         return membersDao.getAll();
+    }
+
+    @Override
+    public Members getEntity(Long key) {
+        return membersDao.get(key);
     }
 
     @Override

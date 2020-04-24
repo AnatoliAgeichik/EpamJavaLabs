@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class CommentService extends Service<Comment> {
+public class CommentService extends Service<Comment, Long> {
 
     @Autowired
     private CommentDao commentDao;
@@ -25,6 +25,11 @@ public class CommentService extends Service<Comment> {
     @Override
     public List<Comment> getData() {
         return commentDao.getAll();
+    }
+
+    @Override
+    public Comment getEntity(Long key) {
+        return commentDao.get(key);
     }
 
     @Override
