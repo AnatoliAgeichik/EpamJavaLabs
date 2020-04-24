@@ -14,7 +14,7 @@ public class Event extends Entity {
     public Event() {
     }
 
-    public Event(String name, String description, long addressId, Date date, String ownerEmail, int maxPeople) {
+    public Event(String ownerEmail, String name, String description, Date date, long addressId, int maxPeople) {
         this.name = name;
         this.description = description;
         this.addressId = addressId;
@@ -23,7 +23,7 @@ public class Event extends Entity {
         this.maxPeople = maxPeople;
     }
 
-    public Event(long eventID, String name, String description, long addressId, Date date, String ownerEmail, int maxPeople) {
+    public Event(long eventID, String ownerEmail,  String name, String description,  Date date, long addressId,int maxPeople) {
         this.name = name;
         this.description = description;
         this.addressId = addressId;
@@ -92,12 +92,12 @@ public class Event extends Entity {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Event{");
-        sb.append("name='").append(name).append('\'');
+        sb.append("eventID=").append(eventID);
+        sb.append(", name='").append(name).append('\'');
         sb.append(", description='").append(description).append('\'');
         sb.append(", addressId=").append(addressId);
         sb.append(", date=").append(date);
         sb.append(", ownerEmail='").append(ownerEmail).append('\'');
-        sb.append(", eventID=").append(eventID);
         sb.append(", maxPeople=").append(maxPeople);
         sb.append('}');
         return sb.toString();
