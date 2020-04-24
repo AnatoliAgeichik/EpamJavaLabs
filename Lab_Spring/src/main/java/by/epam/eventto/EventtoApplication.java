@@ -47,6 +47,7 @@ public class EventtoApplication implements CommandLineRunner {
 		log.info( user1 + " read!");
 		//userDao.create(user);
 		//test
+		//test2
 		//List<User> users = userDao.getAll();
 		//users.forEach(u -> log.info(u));
 	}
