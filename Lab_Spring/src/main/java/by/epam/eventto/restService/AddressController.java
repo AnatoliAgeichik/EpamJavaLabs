@@ -14,13 +14,13 @@ public class AddressController {
     @Autowired
     AddressService addressService;
 
-    @DeleteMapping("/address/delete")
-    public ResponseEntity<Void> deleteAddress(@RequestParam Long id){
+    @DeleteMapping("/address/{id}")
+    public ResponseEntity<Void> deleteAddress(@PathVariable Long id){
         addressService.delete(id);
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/address{id}")
+    @GetMapping("/address/{id}")
     public ResponseEntity<Address> getAddress(@PathVariable Long id){
         return ResponseEntity.ok(addressService.getEntity(id));
     }
@@ -30,13 +30,13 @@ public class AddressController {
         return ResponseEntity.ok(addressService.getData());
     }
 
-    @PutMapping("/address/update")
+    @PutMapping("/address")
     public ResponseEntity<Void> updateAddress(@RequestParam Address address){
         addressService.update(address);
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping ("/address/insert")
+    @PostMapping ("/address")
     public ResponseEntity<Void> createAddress(@RequestParam Address address){
         addressService.create(address);
         return ResponseEntity.ok().build();

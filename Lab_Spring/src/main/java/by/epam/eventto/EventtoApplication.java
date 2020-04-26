@@ -46,6 +46,10 @@ public class EventtoApplication implements CommandLineRunner {
 
 		startCustomerApp();
 
+//		User user = new User("aaa@gmail.com", "aaa", "bbb", (byte)18, "m",15);
+//		userDao.create(user);
+
+
 	}
 
 	// Tested with H2 database

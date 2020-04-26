@@ -13,29 +13,29 @@ public class MembersController {
     @Autowired
     MembersService membersService;
 
-    @DeleteMapping("/Members/delete")
-    public ResponseEntity<Void> deleteMembers(@RequestParam Long id){
+    @DeleteMapping("/members/{id}")
+    public ResponseEntity<Void> deleteMembers(@PathVariable Long id){
         membersService.delete(id);
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/Members{id}")
+    @GetMapping("/members/{id}")
     public ResponseEntity<Members> getMembers(@PathVariable Long id){
         return ResponseEntity.ok(membersService.getEntity(id));
     }
 
-    @GetMapping("/Memberses")
+    @GetMapping("/memberses")
     public ResponseEntity<List<Members>> getAllMemberss(){
         return ResponseEntity.ok(membersService.getData());
     }
 
-    @PutMapping("/Members/update")
+    @PutMapping("/members")
     public ResponseEntity<Void> updateMembers(@RequestParam Members members){
         membersService.update(members);
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping ("/Members/insert")
+    @PostMapping ("/members")
     public ResponseEntity<Void> createMembers(@RequestParam Members members){
         membersService.create(members);
         return ResponseEntity.ok().build();
