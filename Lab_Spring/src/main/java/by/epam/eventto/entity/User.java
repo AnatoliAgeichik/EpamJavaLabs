@@ -1,47 +1,42 @@
 package by.epam.eventto.entity;
 
 import by.epam.eventto.collection.Gender;
-import org.springframework.data.annotation.Id;
-import org.springframework.stereotype.Component;
+import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
 
-@Component
-public class User extends Entity{
+@Entity
+@Audited
+@Table(name = "users")
+public class User{
 
     @Id
-    @Column(name = "EMAIL")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column
+    private int id;
+    @Column
     private String email;
-
-    @Column(name = "FIRTSNAME")
+    @Column
     private String firstName;
-
-    @Column(name = "LASTNAME")
+    @Column
     private String lastName;
-
-    @Column(name = "AGE")
-    private byte age;
-    @Column(name = "GENDER")
-    private Gender gender;
-    @Column(name="RATING")
+    @Column
+    private int age;
+    @Column
+    private String gender;
+    @Column(name = "RAITING")
     private int rating;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "USER")
-    private List<Comment> userComments;
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "USER")
+//    private List<Comment> userComments;
 
     public User() {
     }
 
-    public User(String email, String firstName, String lastName, byte age, String gender, int rating) {
-        this.email = email;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.age = age;
-        this.rating = rating;
-        this.gender = Gender.valueOf(gender);
-
+    public int getId() {
+        return id;
     }
 
     public String getEmail() {
@@ -68,11 +63,11 @@ public class User extends Entity{
         this.lastName = lastName;
     }
 
-    public byte getAge() {
+    public int getAge() {
         return age;
     }
 
-    public void setAge(byte age) {
+    public void setAge(int age) {
         this.age = age;
     }
 
@@ -82,7 +77,7 @@ public class User extends Entity{
 
     public void setGender(String gender) {
 
-        this.gender = Gender.valueOf(gender.toUpperCase());
+        this.gender = gender;
     }
 
     public int getRating() {

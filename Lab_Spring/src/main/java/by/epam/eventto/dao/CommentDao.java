@@ -54,11 +54,10 @@ public class CommentDao implements DAO<Comment, Long> {
 
     @Override
     public List<Comment> getAll(Integer page) {
-        Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from Comment ");
-        query.setFirstResult((page - 1)*10);
-        query.setMaxResults(page*10);
-        return (List<Comment>) ((org.hibernate.query.Query) query).list();
+        return (List<Comment>) HibernateSessionFactory
+                .getSessionFactory()
+                .openSession()
+                .createQuery("from Comment").list();
 //        final String GET_ALL = "SELECT * FROM COMMENTS";
 //        return  jdbcTemplate.query(GET_ALL, new CommentsMapper());
     }

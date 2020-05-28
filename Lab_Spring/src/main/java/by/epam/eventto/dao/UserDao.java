@@ -2,6 +2,7 @@ package by.epam.eventto.dao;
 
 import by.epam.eventto.entity.Members;
 import by.epam.eventto.entity.User;
+import by.epam.eventto.hibernateFactory.HibernateSessionFactory;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
@@ -11,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class UserDao implements DAO<User, String> {
+public class UserDao implements DAO<User, Integer> {
 
 //    @Autowired
 //    private JdbcTemplate jdbcTemplate;
@@ -32,20 +33,19 @@ public class UserDao implements DAO<User, String> {
     }
 
     @Override
-    public Optional<User> get(String key) {
-        Session session = sessionFactory.getCurrentSession();
-        return session.byId(User.class).loadOptional(key);
-//        final String GET_ONE = "SELECT * FROM USERS WHERE trim(EMAIL) = ?";
-//        return jdbcTemplate.queryForObject(GET_ONE, new Object[]{key}, new UserMapper());
+    public Optional<User> get(Integer key) {
+        return HibernateSessionFactory
+                .getSessionFactory()
+                .openSession()
+                .byId(User.class).loadOptional(key);
     }
 
     @Override
     public List<User> getAll(Integer page) {
-        Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from Users");
-        query.setFirstResult((page - 1)*10);
-        query.setMaxResults(page*10);
-        return (List<User>) ((org.hibernate.query.Query) query).list();
+        return (List<User>) HibernateSessionFactory
+                .getSessionFactory()
+                .openSession()
+                .createQuery("from User").list();
 //        final String GET_ALL = "SELECT * FROM USERS";
 //        return  jdbcTemplate.query(GET_ALL, new UserMapper());
     }
@@ -65,7 +65,7 @@ public class UserDao implements DAO<User, String> {
     }
 
     @Override
-    public void delete(String key) {
+    public void delete(Integer key) {
         Session session = sessionFactory.getCurrentSession();
         User user = session.load(User.class, key);
         session.delete(user);

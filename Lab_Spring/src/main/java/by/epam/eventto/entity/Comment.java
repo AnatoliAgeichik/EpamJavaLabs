@@ -2,14 +2,13 @@ package by.epam.eventto.entity;
 
 
 import org.hibernate.envers.Audited;
-import org.springframework.data.annotation.Id;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import javax.persistence.Entity;
 import java.util.Objects;
 
 @Entity
-@Audited
 @Table(name = "COMMENTS")
 public class Comment {
 
@@ -19,18 +18,16 @@ public class Comment {
     private long commentId;
 
 
-    @ManyToOne()
-    @JoinColumn(name = "EMAIL", nullable = false)
+    @Column(name = "Email")
     private String userEmail;
 
-    @Column(name = "CONTENT")
+    @Column
     private String content;
 
-    @ManyToOne()
-    @JoinColumn(name = "EVENT_ID", nullable = false)
+    @Column(name = "Event_id")
     private long eventID;
 
-    @Column(name = "LIKES")
+    @Column
     private int likes;
 
 

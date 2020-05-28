@@ -1,47 +1,43 @@
 package by.epam.eventto.entity;
 
-import org.hibernate.envers.Audited;
-import org.springframework.data.annotation.Id;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
 
-@javax.persistence.Entity
-@Audited
-@Table(name = "EVENT")
-public class Event extends Entity {
+@Entity
+@Table
+public class Event extends EntityT {
     @Id
     @Column(name = "EVENT_ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long eventID;
 
-    @Column(name = "NAME")
+    @Column
     private String name;
 
-    @Column(name = "DESCRIPTION")
+    @Column
     private String description;
 
-    @OneToOne()
-    @JoinColumn(name = "ADDRESS_ID", nullable = false)
+    @Column(name = "Address_id")
     private long addressId;
 
     @Column(name = "EVENT_DATE")
     private Date date;
 
-    @ManyToOne()
-    @JoinColumn(name = "OWNER_ID", nullable = false)
+    @Column(name = "Owner_id")
     private String ownerEmail;
 
     @Column(name = "MAX_PEOPLE")
     private int maxPeople;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "EVENT")
-    private List<Comment> eventComments;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "EVENT")
-    private List<Members> eventMembers;
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "EVENT")
+//    private List<Comment> eventComments;
+//
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "EVENT")
+//    private List<Members> eventMembers;
 
 
     public Event() {

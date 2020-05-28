@@ -2,6 +2,7 @@ package by.epam.eventto.dao;
 
 import by.epam.eventto.entity.Address;
 import by.epam.eventto.entity.Event;
+import by.epam.eventto.entity.User;
 import by.epam.eventto.hibernateFactory.HibernateSessionFactory;
 import by.epam.eventto.mapper.AddressMapper;
 import by.epam.eventto.mapper.EventMapper;
@@ -54,11 +55,11 @@ public class AddressDao implements DAO<Address, Long> {
 
     @Override
     public List<Address> getAll(Integer page) {
-        Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from Address");
-        query.setFirstResult((page - 1)*10);
-        query.setMaxResults(page*10);
-        return (List<Address>) ((org.hibernate.query.Query) query).list();
+        List<Address> addresses = (List<Address>) HibernateSessionFactory
+                .getSessionFactory()
+                .openSession()
+                .createQuery("from Address").list();
+        return addresses;
 //        final String GET_ALL = "SELECT * FROM ADDRESS";
 //        return  jdbcTemplate.query(GET_ALL, new AddressMapper());
     }

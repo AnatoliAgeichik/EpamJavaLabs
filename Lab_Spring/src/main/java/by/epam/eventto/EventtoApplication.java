@@ -56,13 +56,13 @@ public class EventtoApplication implements CommandLineRunner {
 	void startCustomerApp() {
 		//User user = new User("llllllll@gmail.com", "Alex", "Shagal", (byte)20, "M", 150);
 
-		Address address = new Address("Mins","afaf","afa","af");
+		//Address address = new Address("Mins","afaf","afa","af");
 
 		//User user1 = userDao.get("example1@gmail.com");
 		//userService.delete("dddddd@gmail.com");
 		//log.info( user1 + " read!");
 		//userDao.create(user);
-		addressDao.create(address);
+		//addressDao.create(address);
 //		List<User> users = userDao.getAll();
 //		users.forEach(u -> log.info(u));
 //		SimpleDateFormat ft = new SimpleDateFormat ("yyyy-MM-dd");

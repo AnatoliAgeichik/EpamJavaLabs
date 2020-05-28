@@ -3,6 +3,7 @@ package by.epam.eventto.dao;
 import by.epam.eventto.entity.Address;
 import by.epam.eventto.entity.Event;
 import by.epam.eventto.entity.User;
+import by.epam.eventto.hibernateFactory.HibernateSessionFactory;
 import by.epam.eventto.mapper.EventMapper;
 import by.epam.eventto.mapper.UserMapper;
 import org.hibernate.Session;
@@ -51,11 +52,10 @@ public class EventDao implements DAO<Event, Long> {
 
     @Override
     public List<Event> getAll(Integer page) {
-        Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from Event ");
-        query.setFirstResult((page - 1)*10);
-        query.setMaxResults(page*10);
-        return (List<Event>) ((org.hibernate.query.Query) query).list();
+        return (List<Event>) HibernateSessionFactory
+                .getSessionFactory()
+                .openSession()
+                .createQuery("from Event").list();
 //        final String GET_ALL = "SELECT * FROM EVENT";
 //        return  jdbcTemplate.query(GET_ALL, new EventMapper());
     }

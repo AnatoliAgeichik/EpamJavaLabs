@@ -14,7 +14,7 @@ import java.util.Optional;
 
 
 @Component
-public class UserService extends Service<User, String> {
+public class UserService extends Service<User, Integer> {
 
     public static final Logger log = LogManager.getLogger();
 
@@ -30,7 +30,7 @@ public class UserService extends Service<User, String> {
     }
 
     @Override
-    public Optional<User> getEntity(String key) {
+    public Optional<User> getEntity(Integer key) {
 //        try{
 //            log.info("FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF");
 //            User user = Optional.of(userDao.get(key)).orElseThrow(ServiceException::new);
@@ -43,7 +43,7 @@ public class UserService extends Service<User, String> {
 
     public void create(User user) {
         try {
-            if (!(isEntityExist(user.getEmail()))) {
+            if (!(isEntityExist(user.getId()))) {
                 userDao.create(user);
             } else {
                 throw new ServiceException("such user already exists");
@@ -58,7 +58,7 @@ public class UserService extends Service<User, String> {
     @Override
     public void update(User user) {
         try {
-            if ((isEntityExist(user.getEmail()))) {
+            if ((isEntityExist(user.getId()))) {
                 userDao.update(user);
             } else {
                 throw  new ServiceException("such user does not exist");
@@ -70,7 +70,7 @@ public class UserService extends Service<User, String> {
     }
 
     @Override
-    public void delete(String key) {
+    public void delete(Integer key) {
         try {
             if (isEntityExist(key)) {
                 userDao.delete(key);

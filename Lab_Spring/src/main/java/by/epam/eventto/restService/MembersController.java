@@ -1,6 +1,7 @@
 package by.epam.eventto.restService;
 
 import by.epam.eventto.entity.Members;
+import by.epam.eventto.entity.User;
 import by.epam.eventto.service.MembersService;
 import by.epam.eventto.entity.Members;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +25,8 @@ public class MembersController {
         return ResponseEntity.ok(membersService.getEntity(id).get());
     }
 
-    @GetMapping("/memberses")
-    public ResponseEntity<List<Members>> getAllMemberss(){
+    @GetMapping("/members")
+    public ResponseEntity<List<Members>> getAllMembers(){
         return ResponseEntity.ok(membersService.getData());
     }
 
@@ -34,6 +35,7 @@ public class MembersController {
         membersService.update(members);
         return ResponseEntity.ok().build();
     }
+
 
     @PostMapping ("/members")
     public ResponseEntity<Void> createMembers(@RequestParam Members members){

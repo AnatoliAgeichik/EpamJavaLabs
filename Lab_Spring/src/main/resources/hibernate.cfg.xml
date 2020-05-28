@@ -5,14 +5,16 @@
 <hibernate-configuration>
     <session-factory>
         <property name="connection.driver_class">oracle.jdbc.OracleDriver</property>
+        <property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
         <property name="connection.url">jdbc:oracle:thin:@localhost:1521:orcl</property>
         <property name="connection.username">eventto2</property>
         <property name="connection.password">oracle</property>
         <property name="dialect">org.hibernate.dialect.Oracle8iDialect</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.Oracle12cDialect</property>
 
         <property name="show_sql">false</property>
 
-
+        <mapping class="by.epam.eventto.entity.User" />
 
     </session-factory>
 </hibernate-configuration>
