@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface DAO<T, K> {
-    boolean create(T item);
-    T get(K key);
-    List<T> getAll();
-    boolean update(T updated);
-    boolean delete(K key);
+    void create(T item);
+    Optional<T> get(K key);
+    List<T> getAll(Integer page);
+    T update(T updated);
+    void delete(K key);
 }

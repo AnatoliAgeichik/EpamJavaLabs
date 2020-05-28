@@ -21,7 +21,7 @@ public class CommentController {
 
     @GetMapping("/comment{id}")
     public ResponseEntity<Comment> getComment(@PathVariable Long id){
-        return ResponseEntity.ok(commentService.getEntity(id));
+        return ResponseEntity.ok(commentService.getEntity(id).get());
     }
 
     @GetMapping("/comments")

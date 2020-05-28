@@ -1,13 +1,31 @@
 package by.epam.eventto.entity;
 
+import org.hibernate.envers.Audited;
+import org.springframework.data.annotation.Id;
+
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Objects;
 
+@javax.persistence.Entity
+@Audited
+@Table(name = "MEMBERS")
 public class Members extends Entity {
 
+    @Id
+    @Column(name = "MEMBERS_ID")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long memberId;
+
+    @ManyToOne()
+    @JoinColumn(name = "EVENT_ID", nullable = false)
     private long eventId;
+
+    @ManyToOne()
+    @JoinColumn(name = "EMAIL", nullable = false)
     private String email;
+
+    @Column(name = "STATUS")
     private String status;
 
     public Members() {

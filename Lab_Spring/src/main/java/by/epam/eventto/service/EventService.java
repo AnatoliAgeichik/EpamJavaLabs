@@ -1,14 +1,15 @@
 package by.epam.eventto.service;
 
 
-import by.epam.eventto.dao.EventDao;
-import by.epam.eventto.entity.Event;
-import by.epam.eventto.exception.ServiceException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+        import by.epam.eventto.dao.EventDao;
+        import by.epam.eventto.entity.Event;
+        import by.epam.eventto.exception.ServiceException;
+        import org.springframework.beans.factory.annotation.Autowired;
+        import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
+        import java.util.ArrayList;
+        import java.util.List;
+        import java.util.Optional;
 
 @Component
 public class EventService extends Service<Event, Long> {
@@ -22,11 +23,11 @@ public class EventService extends Service<Event, Long> {
 
 
     public List<Event> getData(){
-        return eventDao.getAll();
+        return eventDao.getAll(10);
     }
 
     @Override
-    public Event getEntity(Long key) {
+    public Optional<Event> getEntity(Long key) {
         return eventDao.get(key);
     }
 
@@ -79,7 +80,7 @@ public class EventService extends Service<Event, Long> {
             log.error(e.getMessage());
         }
 
-        }
+    }
 
 }
 

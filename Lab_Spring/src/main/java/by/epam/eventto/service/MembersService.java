@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class MembersService extends Service<Members, Long> {
@@ -21,11 +22,11 @@ public class MembersService extends Service<Members, Long> {
 
     @Override
     public List<Members> getData() {
-        return membersDao.getAll();
+        return membersDao.getAll(10);
     }
 
     @Override
-    public Members getEntity(Long key) {
+    public Optional<Members> getEntity(Long key) {
         return membersDao.get(key);
     }
 

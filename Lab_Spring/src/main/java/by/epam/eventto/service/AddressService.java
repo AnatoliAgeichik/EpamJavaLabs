@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class AddressService extends Service<Address, Long> {
@@ -30,12 +31,12 @@ public class AddressService extends Service<Address, Long> {
 
     @Override
     public List<Address> getData() {
-        return addressDao.getAll();
+        return addressDao.getAll(10);
 
     }
 
     @Override
-    public Address getEntity(Long key) {
+    public Optional<Address> getEntity(Long key) {
         return  addressDao.get(key);
     }
 

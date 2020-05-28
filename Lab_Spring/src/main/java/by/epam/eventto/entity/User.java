@@ -1,18 +1,35 @@
 package by.epam.eventto.entity;
 
 import by.epam.eventto.collection.Gender;
+import org.springframework.data.annotation.Id;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 @Component
 public class User extends Entity{
+
+    @Id
+    @Column(name = "EMAIL")
     private String email;
+
+    @Column(name = "FIRTSNAME")
     private String firstName;
+
+    @Column(name = "LASTNAME")
     private String lastName;
+
+    @Column(name = "AGE")
     private byte age;
+    @Column(name = "GENDER")
     private Gender gender;
+    @Column(name="RATING")
     private int rating;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "USER")
+    private List<Comment> userComments;
 
     public User() {
     }

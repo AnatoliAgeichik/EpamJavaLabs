@@ -4,7 +4,7 @@ import by.epam.eventto.collection.Gender;
 import by.epam.eventto.dao.*;
 import by.epam.eventto.entity.*;
 import by.epam.eventto.entity.Event;
-import by.epam.eventto.service.UserService;
+//import by.epam.eventto.service.UserService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +32,7 @@ public class EventtoApplication implements CommandLineRunner {
 	@Autowired
 	MembersDao memDao;
 	@Autowired
-	UserService userService;
+	//UserService userService;
 
 
 	public static void main(String[] args) {
@@ -54,11 +54,15 @@ public class EventtoApplication implements CommandLineRunner {
 
 	// Tested with H2 database
 	void startCustomerApp() {
-		User user = new User("dddddd@gmail.com", "Alex", "Shagal", (byte)20, "M", 150);
+		//User user = new User("llllllll@gmail.com", "Alex", "Shagal", (byte)20, "M", 150);
+
+		Address address = new Address("Mins","afaf","afa","af");
+
 		//User user1 = userDao.get("example1@gmail.com");
 		//userService.delete("dddddd@gmail.com");
 		//log.info( user1 + " read!");
-		userService.create(user);
+		//userDao.create(user);
+		addressDao.create(address);
 //		List<User> users = userDao.getAll();
 //		users.forEach(u -> log.info(u));
 //		SimpleDateFormat ft = new SimpleDateFormat ("yyyy-MM-dd");

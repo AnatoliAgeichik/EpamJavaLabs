@@ -1,14 +1,38 @@
 package by.epam.eventto.entity;
 
 
+import org.hibernate.envers.Audited;
+import org.springframework.data.annotation.Id;
+
+import javax.persistence.*;
+import javax.persistence.Entity;
 import java.util.Objects;
 
+@Entity
+@Audited
+@Table(name = "COMMENTS")
 public class Comment {
-    private String userEmail;
-    private String content;
-    private long eventID;
-    private int likes;
+
+    @Id
+    @Column(name = "COMMENT_ID")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long commentId;
+
+
+    @ManyToOne()
+    @JoinColumn(name = "EMAIL", nullable = false)
+    private String userEmail;
+
+    @Column(name = "CONTENT")
+    private String content;
+
+    @ManyToOne()
+    @JoinColumn(name = "EVENT_ID", nullable = false)
+    private long eventID;
+
+    @Column(name = "LIKES")
+    private int likes;
+
 
     public Comment() {
     }

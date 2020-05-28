@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class CommentService extends Service<Comment, Long> {
@@ -24,11 +25,11 @@ public class CommentService extends Service<Comment, Long> {
 
     @Override
     public List<Comment> getData() {
-        return commentDao.getAll();
+        return commentDao.getAll(10);
     }
 
     @Override
-    public Comment getEntity(Long key) {
+    public Optional<Comment> getEntity(Long key) {
         return commentDao.get(key);
     }
 

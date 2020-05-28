@@ -10,6 +10,7 @@ import org.springframework.dao.DataAccessException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public abstract class Service<E, K> {
     static Logger log= LogManager.getLogger();
@@ -41,7 +42,7 @@ public abstract class Service<E, K> {
 
     public boolean isEntityExist(K key) {
         try{
-           E entity = getEntity(key);
+           E entity = getEntity(key).get();
         }catch (DataAccessException e){
             log.error(e.getMessage());
             return false;
@@ -49,7 +50,7 @@ public abstract class Service<E, K> {
         return true;
     }
 
-    public abstract E getEntity(K key);
+    public abstract Optional<E> getEntity(K key);
 
     public abstract void create(E entity);
 

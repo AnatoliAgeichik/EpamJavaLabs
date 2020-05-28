@@ -26,11 +26,11 @@ public class UserService extends Service<User, String> {
 //    }
 
     public List<User> getData() {
-        return userDao.getAll();
+        return userDao.getAll(10);
     }
 
     @Override
-    public User getEntity(String key) {
+    public Optional<User> getEntity(String key) {
 //        try{
 //            log.info("FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF");
 //            User user = Optional.of(userDao.get(key)).orElseThrow(ServiceException::new);

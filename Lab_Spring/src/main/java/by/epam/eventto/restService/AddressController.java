@@ -22,7 +22,7 @@ public class AddressController {
 
     @GetMapping("/address/{id}")
     public ResponseEntity<Address> getAddress(@PathVariable Long id){
-        return ResponseEntity.ok(addressService.getEntity(id));
+        return ResponseEntity.ok(addressService.getEntity(id).get());
     }
 
     @GetMapping("/addresses")

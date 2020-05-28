@@ -31,6 +31,26 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		<!-- Hibernate -->
+		<!-- to start need only this -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>5.3.16.Final</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate.hql</groupId>
+			<artifactId>hibernate-hql-parser</artifactId>
+			<version>1.5.0.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-envers</artifactId>
+			<version>5.3.16.Final</version>
+		</dependency>
+		<!-- for JPA, use hibernate-entitymanager instead of hibernate-core -->
+
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

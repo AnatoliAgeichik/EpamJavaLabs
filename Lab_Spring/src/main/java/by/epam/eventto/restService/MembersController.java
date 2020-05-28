@@ -21,7 +21,7 @@ public class MembersController {
 
     @GetMapping("/members/{id}")
     public ResponseEntity<Members> getMembers(@PathVariable Long id){
-        return ResponseEntity.ok(membersService.getEntity(id));
+        return ResponseEntity.ok(membersService.getEntity(id).get());
     }
 
     @GetMapping("/memberses")

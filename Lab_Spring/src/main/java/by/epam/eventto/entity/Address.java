@@ -1,13 +1,42 @@
 package by.epam.eventto.entity;
 
+import org.hibernate.envers.Audited;
+import org.springframework.data.annotation.Id;
+
+
+import javax.persistence.*;
+
+import java.util.List;
 import java.util.Objects;
 
-public class Address extends Entity {
+
+@javax.persistence.Entity
+@Audited
+@Table(name = "ADDRESS")
+public class Address extends by.epam.eventto.entity.Entity {
+
+    @Id
+    @Column(name = "ADDREESS_ID")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long addressId;
+
+
+
+    @Column(name = "COUNTRY")
     private String country;
+
+    @Column(name = "TOWN")
     private String town;
+
+    @Column(name = "STREET")
     private String street;
+
+    @Column(name = "HOUSE")
     private String house;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "ADDRESS")
+    private List<Event> addressEvents;
+
 
     public Address() {
     }
